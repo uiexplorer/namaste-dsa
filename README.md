@@ -1,2 +1,2 @@
 # namaste-dsa
-Practice DSA in Repo.
+Practice DSA in this Repo.
