@@ -10,6 +10,11 @@
  * }
  */
 
+/**
+ * This is two pass approach where we loop over the linked list 2 times:
+ * 1. Find length of array
+ * 2. Find position before node to be deleted
+ */
 function removeNthNodeFromEnd(head, n) {
   const sentinel = new ListNode(null, head);
   let length = 0;
@@ -29,3 +34,22 @@ function removeNthNodeFromEnd(head, n) {
 console.log(removeNthNodeFromEnd([1, 2, 3, 4, 5], 2)); // [1,2,3,5]
 console.log(removeNthNodeFromEnd([1], 1)); // []
 console.log(removeNthNodeFromEnd([1, 2], 1)); // [1]
+
+function removeNthNodeFromEndInOnePass(head, n) {
+  const sentinel = new ListNode(null, head);
+  let firstPointer = sentinel;
+  let secondPointer = sentinel;
+  for (let i = 0; i <= n; i++) {
+    secondPointer = secondPointer.next;
+  }
+  while (secondPointer) {
+    firstPointer = firstPointer.next;
+    secondPointer = secondPointer.next;
+  }
+  firstPointer.next = firstPointer.next.next;
+  return sentinel.next;
+}
+
+console.log(removeNthNodeFromEndInOnePass([1, 2, 3, 4, 5], 2)); // [1,2,3,5]
+console.log(removeNthNodeFromEndInOnePass([1], 1)); // []
+console.log(removeNthNodeFromEndInOnePass([1, 2], 1)); // [1]
