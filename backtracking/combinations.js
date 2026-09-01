@@ -5,22 +5,18 @@
 
 function combinations(n, k) {
   const result = [];
-  const nums = [];
-  for (let index = 1; index <= n; index++) {
-    nums.push(index);
-  }
-
-  const backtracking = (path, start) => {
+  const backtrack = (path, start) => {
     if (path.length === k) {
       result.push([...path]);
-    }
-    for (let index = start; index < nums.length; index++) {
-      path.push(nums[index]);
-      backtracking(path, index + 1);
-      path.pop();
+    } else {
+      for (let num = start; num <= n; num++) {
+        path.push(num);
+        backtrack(path, num + 1);
+        path.pop();
+      }
     }
   };
-  backtracking([], 0);
+  backtrack([], 1);
   return result;
 }
 
