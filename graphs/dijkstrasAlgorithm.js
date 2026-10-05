@@ -6,16 +6,14 @@ function shortestDistance(graph, src) {
   let distance = 0;
   let nextNode = src;
   let weight = 0;
-  let path = [];
+  let path = [src];
   while (graph[nextNode].length) {
-    path.push(nextNode);
     const edges = graph[nextNode];
     edges.length > 1 && edges.sort(([nodeA, a], [nodeB, b]) => a - b);
     [nextNode, weight] = edges[0];
     distance += weight;
+    path.push(nextNode);
   }
-  path.push(nextNode);
-  console.log('DEBUG: distance:', distance);
   return { distance, path };
 }
 
