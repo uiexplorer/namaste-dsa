@@ -13,7 +13,7 @@ function canFinish(numCourses, prerequisites) {
   let completed = 0;
 
   for (const [from, to] of prerequisites) {
-    if (from === to) return false;
+    if (from === to) return [];
     graph[to].push(from);
     ++indegree[from];
   }
@@ -35,7 +35,7 @@ function canFinish(numCourses, prerequisites) {
     }
   }
 
-  return completed === numCourses;
+  return completed === numCourses ? queue : [];
 }
 
 console.log(canFinish(4, [[0, 1], [1, 2], [2, 3], [3, 1]])); // false
